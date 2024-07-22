@@ -24,11 +24,22 @@ export const newUser = async(req, res) => {
 };
 
 
-export const userId =  async(req, res) => {
+export const updateUser =  async(req, res) => {
     const id = req.params.id;
     const user = await apiUser.findById(id);
     res.json({
         success: true,
         user: user,
     });
+};
+
+
+export const DeleteUser = async(req, res) => {
+   const id = req.params.id;
+   const user =  await apiUser.findById(id);
+   await user.remove();
+   res.json({
+       success: true,
+       message: "User Deleted",
+   });
 };
